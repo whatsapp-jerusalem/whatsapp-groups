@@ -137,11 +137,11 @@
                 if (matchedNeighborhood) {
                     whatsappLink.href = neighborhoods[matchedNeighborhood];
                     whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
-                    button.removeAttribute('hidden');
+                    button.classList.remove('d-none');
                     console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
                     console.log('Button CSS - display:', button.style.display, ', visibility:', button.style.visibility); // הצגת מצב ה-CSS של הכפתור
                 } else {
-                    button.setAttribute('hidden', true);
+                    button.classList.add('d-none');
                     console.log('Button hidden'); // הודעה כשהכפתור מוסתר
                 }
             });
