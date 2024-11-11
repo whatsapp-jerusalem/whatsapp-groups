@@ -3,25 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קבוצות WhatsApp שכונתיות</title>
+    <title>ירושלמים תמיד מחוברים</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f4f8;
+            font-family: 'Alef', sans-serif;
+            color: #343a40;
         }
         .container {
-            max-width: 600px;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .title-text {
+            font-size: 2rem;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        .search-input {
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ced4da;
+        }
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 2rem 0;
         }
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
             border: none;
             padding: 1rem;
-            border-radius: 12px;
+            border-radius: 8px;
             width: 100%;
             margin-top: 1rem;
             font-size: 1.2rem;
@@ -30,21 +53,10 @@
             background-color: #1ea952;
             color: white;
         }
-        .search-input {
-            padding: 1rem;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 2rem 0;
-        }
         .footer-text {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #6c757d;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
         .results-list {
             max-height: 300px;
@@ -53,19 +65,21 @@
             border: 1px solid #dee2e6;
             border-radius: 8px;
             margin-top: 0.5rem;
+            padding: 0.5rem;
+        }
+        .link-style {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .link-style:hover {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="text-center mb-4">
-            <h1 class="h4">קבוצות WhatsApp שכונתיות</h1>
-        </div>
-
-        <div class="intro-text">
-            <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
-            <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
-            <p>פשוט חפשו את השכונה שלכם והצטרפו לקבוצה:</p>
+            <h1 class="title-text">ירושלמים תמיד מחוברים</h1>
         </div>
 
         <div class="card shadow-sm">
@@ -83,9 +97,14 @@
             </div>
         </div>
 
+        <div class="intro-text">
+            <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
+            <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
+            <p>אפשר למצוא את הקבוצה הרלוונטית אליך בטבלה מטה או פשוט לכתוב בחיפוש פה מטה את שם השכונה ולהגיע ישירות לשכונה שלך, להצטרף ואנחנו נעשה את השאר.</p>
+        </div>
+
         <div class="footer-text text-center">
-            <p>הקבוצות הן "שקטות", לעדכונים בלבד.<br>
-            השתתפות בקבוצות היא בהתאם לכללי התקנון שלנו.</p>
+            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://www.jerusalem.muni.il/media/49436/תקנון-ווטסאפ-עיריית-ירושלים.pdf" target="_blank" class="link-style">התקנון שלנו</a>.</p>
         </div>
     </div>
 
@@ -139,7 +158,6 @@
                     whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
                     button.classList.remove('d-none');
                     console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
-                    console.log('Button CSS - display:', button.style.display, ', visibility:', button.style.visibility); // הצגת מצב ה-CSS של הכפתור
                 } else {
                     button.classList.add('d-none');
                     console.log('Button hidden'); // הודעה כשהכפתור מוסתר
