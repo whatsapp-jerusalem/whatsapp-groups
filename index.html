@@ -72,7 +72,6 @@
         .results-list {
             max-height: 300px;
             overflow-y: auto;
-            display: none;
             border: 1px solid #dee2e6;
             border-radius: 8px;
             margin-top: 0.5rem;
@@ -87,6 +86,13 @@
         }
         .card-body {
             position: relative;
+        }
+        .neighborhood-btn {
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .neighborhood-btn:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -103,11 +109,6 @@
                        class="form-control search-input" 
                        placeholder="הקלידו את שם השכונה...">
                 <div id="search-results" class="results-list"></div>
-                <div id="whatsapp-button" class="whatsapp-btn-container d-none">
-                    <a href="#" class="btn whatsapp-btn" target="_blank">
-                        הצטרפו לקבוצת השכונה
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -154,30 +155,32 @@
 
         function initSearch() {
             const search = document.getElementById('neighborhood-search');
-            const button = document.getElementById('whatsapp-button');
-            const whatsappLink = button.querySelector('a');
+            const searchResults = document.getElementById('search-results');
             
             search.addEventListener('input', function() {
                 const value = this.value.trim().toLowerCase();
                 console.log('Input value:', value); // הצגת הערך שהוקלד
 
-                const matchedNeighborhood = Object.keys(neighborhoods).find(n => 
+                const matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
                     n.toLowerCase().includes(value) && value.length > 1
                 );
                 
-                console.log('Matched neighborhood:', matchedNeighborhood); // הצגת שם השכונה שנמצאה או undefined אם לא נמצאה התאמה
+                console.log('Matched neighborhoods:', matchedNeighborhoods); // הצגת רשימת השכונות שנמצאו
                 
-                if (matchedNeighborhood) {
-                    whatsappLink.href = neighborhoods[matchedNeighborhood];
-                    whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
-                    button.classList.remove('d-none');
-                    console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
-
-                    // גלילה להבטחת הצגת הכפתור במובייל
-                    button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                searchResults.innerHTML = '';
+                if (matchedNeighborhoods.length > 0) {
+                    matchedNeighborhoods.forEach(name => {
+                        const link = neighborhoods[name];
+                        const button = document.createElement('a');
+                        button.href = link;
+                        button.target = '_blank';
+                        button.className = 'btn whatsapp-btn neighborhood-btn';
+                        button.textContent = `הצטרפו לקבוצת ${name}`;
+                        searchResults.appendChild(button);
+                    });
+                    searchResults.style.display = 'block';
                 } else {
-                    button.classList.add('d-none');
-                    console.log('Button hidden'); // הודעה כשהכפתור מוסתר
+                    searchResults.style.display = 'none';
                 }
             });
         }
