@@ -27,6 +27,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             border: 5px solid #b3e5fc;
+            overflow: hidden;
         }
         .title-text {
             font-size: 2.5rem;
@@ -39,7 +40,7 @@
             padding: 1.2rem;
             font-size: 1.2rem;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             border: 1px solid #ced4da;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -56,7 +57,7 @@
             padding: 1rem;
             border-radius: 8px;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             font-size: 1.3rem;
             transition: all 0.3s ease;
         }
@@ -78,6 +79,7 @@
             margin-top: 0.5rem;
             padding: 0.5rem;
             display: none;
+            background-color: #f8f9fa;
         }
         .link-style {
             color: #007bff;
@@ -103,35 +105,43 @@
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
+        .container-outer {
+            border: 10px solid #b3e5fc;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: #e3f2fd;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="text-center mb-4">
-            <h1 class="title-text">ירושלמים תמיד מחוברים</h1>
-        </div>
-
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <input type="text" 
-                       id="neighborhood-search" 
-                       class="form-control search-input" 
-                       placeholder="הקלידו את שם השכונה...">
-                <div id="search-results" class="results-list"></div>
+    <div class="container-outer">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h1 class="title-text">ירושלמים תמיד מחוברים</h1>
             </div>
-        </div>
 
-        <div class="intro-text">
-            <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
-            <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
-            <p>אפשר למצוא את הקבוצה הרלוונטית אליך בטבלה מטה או פשוט לכתוב בחיפוש פה מטה את שם השכונה ולהגיע ישירות לשכונה שלך, להצטרף ואנחנו נעשה את השאר.</p>
-        </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <input type="text" 
+                           id="neighborhood-search" 
+                           class="form-control search-input" 
+                           placeholder="הקלידו את שם השכונה...">
+                    <div id="search-results" class="results-list"></div>
+                </div>
+            </div>
 
-        <div class="footer-text text-center">
-            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://drive.google.com/file/d/1q2ZWx2Q_QzN7bZKJPOPJ7K95BQkGE-_s/view?usp=sharing" target="_blank" class="link-style">התקנון שלנו</a>.</p>
-        </div>
+            <div class="intro-text">
+                <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
+                <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
+                <p>אפשר למצוא את הקבוצה הרלוונטית אליך בטבלה מטה או פשוט לכתוב בחיפוש פה מטה את שם השכונה ולהגיע ישירות לשכונה שלך, להצטרף ואנחנו נעשה את השאר.</p>
+            </div>
 
-        <img src="./image.jpg" alt="תמונה" class="footer-image">
+            <div class="footer-text text-center">
+                <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://drive.google.com/file/d/1q2ZWx2Q_QzN7bZKJPOPJ7K95BQkGE-_s/view?usp=sharing" target="_blank" class="link-style">התקנון שלנו</a>.</p>
+            </div>
+
+            <img src="./image.jpg" alt="תמונה" class="footer-image">
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -190,6 +200,7 @@
                         searchResults.appendChild(button);
                     });
                     searchResults.style.display = 'block';
+                    searchResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     searchResults.style.display = 'none';
                 }
