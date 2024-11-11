@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            background-color: #f0f4f8;
+            background-color: #e9ecef;
             font-family: 'Alef', sans-serif;
             color: #343a40;
+            padding: 1rem;
         }
         .container {
             max-width: 800px;
@@ -19,13 +20,13 @@
             padding: 2rem;
             background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .title-text {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #007bff;
             font-weight: bold;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         .search-input {
             padding: 1.2rem;
@@ -74,6 +75,9 @@
         .link-style:hover {
             color: #0056b3;
         }
+        .card-body {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -104,7 +108,7 @@
         </div>
 
         <div class="footer-text text-center">
-            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://www.jerusalem.muni.il/media/49436/תקנון-ווטסאפ-עיריית-ירושלים.pdf" target="_blank" class="link-style">התקנון שלנו</a>.</p>
+            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://drive.google.com/file/d/1q2ZWx2Q_QzN7bZKJPOPJ7K95BQkGE-_s/view?usp=sharing" target="_blank" class="link-style">התקנון שלנו</a>.</p>
         </div>
     </div>
 
@@ -158,6 +162,9 @@
                     whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
                     button.classList.remove('d-none');
                     console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
+
+                    // גלילה להבטחת הצגת הכפתור במובייל
+                    button.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
                     button.classList.add('d-none');
                     console.log('Button hidden'); // הודעה כשהכפתור מוסתר
