@@ -5,110 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>קבוצות WhatsApp שכונתיות</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-autocomplete/2.3.7/bootstrap-autocomplete.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        .container {
-            max-width: 600px;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 12px;
-            width: 100%;
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            display: none;
-        }
-        .whatsapp-btn:hover {
-            background-color: #1ea952;
-            color: white;
-        }
-        .search-input {
-            padding: 1rem;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 2rem 0;
-        }
-        .footer-text {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
-        <!-- כותרת -->
         <div class="text-center mb-4">
-            <img src="/api/placeholder/50/50" alt="לוגו העירייה" class="mb-3">
             <h1 class="h4">קבוצות WhatsApp שכונתיות</h1>
         </div>
 
-        <!-- טקסט פתיחה -->
         <div class="intro-text">
             <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
             <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
             <p>פשוט חפשו את השכונה שלכם והצטרפו לקבוצה:</p>
         </div>
 
-        <!-- טופס חיפוש -->
         <div class="card shadow-sm">
             <div class="card-body">
-                <input type="text" id="neighborhood-search" class="form-control search-input" placeholder="הקלידו את שם השכונה...">
+                <input type="text" 
+                       id="neighborhood-search" 
+                       class="form-control search-input" 
+                       placeholder="הקלידו את שם השכונה...">
+                <div id="search-results" class="results-list"></div>
                 <div id="whatsapp-button" style="display: none;">
-                    <a href="#" class="btn whatsapp-btn d-flex justify-content-center align-items-center" target="_blank">
+                    <a href="#" class="btn whatsapp-btn" target="_blank">
                         הצטרפו לקבוצת השכונה
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- טקסט תחתון -->
         <div class="footer-text text-center">
-            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי התקנון שלנו.</p>
+            <p>הקבוצות הן "שקטות", לעדכונים בלבד.<br>
+            השתתפות בקבוצות היא בהתאם לכללי התקנון שלנו.</p>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // נתונים מגיליון גוגל
-        const neighborhoods = {
-            "ארמון הנציב - תלפ\"ז": "https://chat.whatsapp.com/LSuPKdLjd5qJ2NRI7EpAlf",
-            "ארנונה": "https://chat.whatsapp.com/Ki3t3Q9OjtQFkbYn0H225R",
-            "בית הכרם": "https://chat.whatsapp.com/KBkxQuvRwpOC62obYhYG81",
-            // וכן הלאה...
-        };
-
-        const search = document.getElementById('neighborhood-search');
-        const button = document.getElementById('whatsapp-button');
-        const whatsappLink = button.querySelector('a');
-        
-        search.addEventListener('input', function() {
-            const value = this.value.trim();
-            const matchedNeighborhood = Object.keys(neighborhoods).find(n => 
-                n.includes(value) && value.length > 1
-            );
-            
-            if (matchedNeighborhood) {
-                whatsappLink.href = neighborhoods[matchedNeighborhood];
-                button.style.display = 'block';
-            } else {
-                button.style.display = 'none';
-            }
-        });
-    </script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
