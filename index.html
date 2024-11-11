@@ -42,44 +42,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="js/config.js"></script>
-    <script>
-        // Adding debug logs to monitor JavaScript behavior
-        document.addEventListener("DOMContentLoaded", async function() {
-            console.log("Document loaded. Initializing neighborhoods...");
-            try {
-                await loadNeighborhoods();
-                console.log("Neighborhoods loaded successfully.");
-            } catch (error) {
-                console.error("Failed to load neighborhoods:", error);
-            }
-            initSearch();
-        });
-
-        function initSearch() {
-            console.log("Initializing search input...");
-            const search = document.getElementById('neighborhood-search');
-            const button = document.getElementById('whatsapp-button');
-            const whatsappLink = button.querySelector('a');
-
-            search.addEventListener('input', function() {
-                const value = this.value.trim().toLowerCase();
-                console.log("User input:", value);
-                const matchedNeighborhood = Object.keys(neighborhoods).find(n => 
-                    n.toLowerCase().includes(value) && value.length > 1
-                );
-                
-                if (matchedNeighborhood) {
-                    console.log("Match found for neighborhood:", matchedNeighborhood);
-                    whatsappLink.href = neighborhoods[matchedNeighborhood];
-                    whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
-                    button.style.display = 'block';
-                } else {
-                    console.log("No match found. Hiding button.");
-                    button.style.display = 'none';
-                }
-            });
-        }
-    </script>
     <script src="js/app.js"></script>
 </body>
 </html>
