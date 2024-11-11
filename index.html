@@ -10,13 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Alef&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://source.unsplash.com/1920x1080/?jerusalem,city');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             font-family: 'Alef', sans-serif;
             color: #343a40;
             padding: 1rem;
+            background-color: #f8f9fa;
         }
         .container {
             max-width: 900px;
@@ -104,43 +101,35 @@
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        .container-outer {
-            border: 10px solid #b3e5fc;
-            padding: 20px;
-            border-radius: 20px;
-            background-color: #e3f2fd;
-        }
     </style>
 </head>
 <body>
-    <div class="container-outer">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h1 class="title-text">ירושלמים תמיד מחוברים</h1>
-            </div>
-
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <input type="text" 
-                           id="neighborhood-search" 
-                           class="form-control search-input" 
-                           placeholder="הקלידו את שם השכונה...">
-                    <div id="search-results" class="results-list"></div>
-                </div>
-            </div>
-
-            <div class="intro-text">
-                <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
-                <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
-                <p>אפשר למצוא את הקבוצה הרלוונטית אליך בטבלה מטה או פשוט לכתוב בחיפוש פה מטה את שם השכונה ולהגיע ישירות לשכונה שלך, להצטרף ואנחנו נעשה את השאר.</p>
-            </div>
-
-            <div class="footer-text text-center">
-                <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://drive.google.com/file/d/1q2ZWx2Q_QzN7bZKJPOPJ7K95BQkGE-_s/view?usp=sharing" target="_blank" class="link-style">התקנון שלנו</a>.</p>
-            </div>
-
-            <img src="./image.jpg" alt="תמונה" class="footer-image">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h1 class="title-text">ירושלמים תמיד מחוברים</h1>
         </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <input type="text" 
+                       id="neighborhood-search" 
+                       class="form-control search-input" 
+                       placeholder="הקלידו את שם השכונה...">
+                <div id="search-results" class="results-list"></div>
+            </div>
+        </div>
+
+        <div class="intro-text">
+            <p>רוצים לקבל מאיתנו עדכונים ישירות לוואטסאפ?</p>
+            <p>הצטרפו לקבוצות הוואטסאפ העירוני, בהן נעדכן לגבי כל מה שקורה בעיר ובשכונה שלך: תרבות, קהילה, חינוך, שירותים חברתיים, תחבורה, עבודות ברחוב, פיתוח המרחב הציבורי ועוד.</p>
+            <p>אפשר למצוא את הקבוצה הרלוונטית אליך בטבלה מטה או פשוט לכתוב בחיפוש פה מטה את שם השכונה ולהגיע ישירות לשכונה שלך, להצטרף ואנחנו נעשה את השאר.</p>
+        </div>
+
+        <div class="footer-text text-center">
+            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי <a href="https://drive.google.com/file/d/1q2ZWx2Q_QzN7bZKJPOPJ7K95BQkGE-_s/view?usp=sharing" target="_blank" class="link-style">התקנון שלנו</a>.</p>
+        </div>
+
+        <img src="./image.jpg" alt="תמונה" class="footer-image">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
