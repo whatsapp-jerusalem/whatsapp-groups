@@ -1,4 +1,26 @@
-padding: 1rem;
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קבוצות WhatsApp שכונתיות</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-autocomplete/2.3.7/bootstrap-autocomplete.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
             border-radius: 12px;
             width: 100%;
             margin-top: 1rem;
@@ -25,28 +47,13 @@ padding: 1rem;
             color: #6c757d;
             margin-top: 2rem;
         }
-        .results-list {
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            margin-top: 0.5rem;
-        }
-        .result-item {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .result-item:hover {
-            background-color: #f8f9fa;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- כותרת -->
         <div class="text-center mb-4">
+            <img src="/api/placeholder/50/50" alt="לוגו העירייה" class="mb-3">
             <h1 class="h4">קבוצות WhatsApp שכונתיות</h1>
         </div>
 
@@ -60,18 +67,9 @@ padding: 1rem;
         <!-- טופס חיפוש -->
         <div class="card shadow-sm">
             <div class="card-body">
-                <input type="text" 
-                       id="neighborhood-search" 
-                       class="form-control search-input" 
-                       placeholder="הקלידו את שם השכונה..."
-                       autocomplete="off">
-                
-                <!-- רשימת תוצאות חיפוש -->
-                <div id="search-results" class="results-list"></div>
-
-                <!-- כפתור הצטרפות -->
+                <input type="text" id="neighborhood-search" class="form-control search-input" placeholder="הקלידו את שם השכונה...">
                 <div id="whatsapp-button" style="display: none;">
-                    <a href="#" class="whatsapp-btn d-flex justify-content-center align-items-center" target="_blank">
+                    <a href="#" class="btn whatsapp-btn d-flex justify-content-center align-items-center" target="_blank">
                         הצטרפו לקבוצת השכונה
                     </a>
                 </div>
@@ -80,13 +78,37 @@ padding: 1rem;
 
         <!-- טקסט תחתון -->
         <div class="footer-text text-center">
-            <p>הקבוצות הן "שקטות", לעדכונים בלבד.<br>השתתפות בקבוצות היא בהתאם לכללי התקנון שלנו.</p>
+            <p>הקבוצות הן "שקטות", לעדכונים בלבד. השתתפות בקבוצות היא בהתאם לכללי התקנון שלנו.</p>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        // קוד JavaScript יבוא בהמשך
+        // נתונים מגיליון גוגל
+        const neighborhoods = {
+            "ארמון הנציב - תלפ\"ז": "https://chat.whatsapp.com/LSuPKdLjd5qJ2NRI7EpAlf",
+            "ארנונה": "https://chat.whatsapp.com/Ki3t3Q9OjtQFkbYn0H225R",
+            "בית הכרם": "https://chat.whatsapp.com/KBkxQuvRwpOC62obYhYG81",
+            // וכן הלאה...
+        };
+
+        const search = document.getElementById('neighborhood-search');
+        const button = document.getElementById('whatsapp-button');
+        const whatsappLink = button.querySelector('a');
+        
+        search.addEventListener('input', function() {
+            const value = this.value.trim();
+            const matchedNeighborhood = Object.keys(neighborhoods).find(n => 
+                n.includes(value) && value.length > 1
+            );
+            
+            if (matchedNeighborhood) {
+                whatsappLink.href = neighborhoods[matchedNeighborhood];
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
