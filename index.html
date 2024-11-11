@@ -84,8 +84,10 @@
                     whatsappLink.href = neighborhoods[matchedNeighborhood];
                     whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
                     button.style.display = 'block';
+                    console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
                 } else {
                     button.style.display = 'none';
+                    console.log('Button hidden'); // הודעה כשהכפתור מוסתר
                 }
             });
         }
