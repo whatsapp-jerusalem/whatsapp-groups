@@ -26,7 +26,7 @@
                        class="form-control search-input" 
                        placeholder="הקלידו את שם השכונה...">
                 <div id="search-results" class="results-list"></div>
-                <div id="whatsapp-button" style="display: none;">
+                <div id="whatsapp-button" class="whatsapp-btn-container d-none">
                     <a href="#" class="btn whatsapp-btn" target="_blank">
                         הצטרפו לקבוצת השכונה
                     </a>
@@ -83,13 +83,11 @@
                 if (matchedNeighborhood) {
                     whatsappLink.href = neighborhoods[matchedNeighborhood];
                     whatsappLink.textContent = `הצטרפו לקבוצת ${matchedNeighborhood}`;
-                    button.style.display = 'block';
-                    button.style.visibility = 'visible';
+                    button.classList.remove('d-none');
                     console.log('Button displayed with link:', whatsappLink.href); // בדיקת הקישור בכפתור
                     console.log('Button CSS - display:', button.style.display, ', visibility:', button.style.visibility); // הצגת מצב ה-CSS של הכפתור
                 } else {
-                    button.style.display = 'none';
-                    button.style.visibility = 'hidden';
+                    button.classList.add('d-none');
                     console.log('Button hidden'); // הודעה כשהכפתור מוסתר
                 }
             });
