@@ -10,14 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Alef&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f4f8;
+            font-family: 'Alef', sans-serif;
+            color: #343a40;
+            padding: 1rem;
+            background-color: #f8f9fa;
         }
         .container {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             overflow: hidden;
         }
         .title-text {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #007bff;
             font-weight: bold;
             margin-bottom: 2rem;
@@ -32,6 +41,8 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .intro-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
             margin: 2rem 0;
             color: #495057;
         }
@@ -57,8 +68,10 @@
             margin-top: 3rem;
         }
         .results-list {
-            padding: 0.5rem 4rem;
-            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
             display: none;
             background-color: #f8f9fa;
         }
@@ -68,8 +81,6 @@
         }
         .link-style:hover {
             color: #0056b3;
-        }
-        
         }
         .card-body {
             position: relative;
