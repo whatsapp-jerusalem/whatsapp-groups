@@ -68,8 +68,6 @@
             margin-top: 3rem;
         }
         .results-list {
-            max-height: 300px;
-            overflow-y: auto;
             border: 1px solid #dee2e6;
             border-radius: 8px;
             margin-top: 0.5rem;
@@ -179,7 +177,7 @@
                         button.href = link;
                         button.target = '_blank';
                         button.className = 'btn whatsapp-btn neighborhood-btn';
-                        button.textContent = `הצטרפו לקבוצת ${name}`;
+                        button.textContent = name;
                         searchResults.appendChild(button);
                     });
                     searchResults.style.display = 'block';
