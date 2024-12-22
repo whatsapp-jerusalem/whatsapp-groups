@@ -163,54 +163,54 @@
             return button;
         }
 
-function initSearch() {
-    const search = document.getElementById('neighborhood-search');
-    const searchResults = document.getElementById('search-results');
+        function initSearch() {
+            const search = document.getElementById('neighborhood-search');
+            const searchResults = document.getElementById('search-results');
+            
+            search.addEventListener('input', function() {
+                const value = this.value.trim().toLowerCase();
+                console.log('Input value:', value);
 
-    search.addEventListener('input', function() {
-        const value = this.value.trim().toLowerCase();
-        console.log('Input value:', value);
+                let matchedNeighborhoods = [];
+                
+                // אם מחפשים "כל", נציג רק את "כל העיר"
+                if (value === 'כל') {
+                    if (neighborhoods['כל העיר']) {
+                        matchedNeighborhoods = ['כל העיר'];
+                    }
+                } else {
+                    // אחרת, נחפש בכל השכונות חוץ מ"כל העיר"
+                    matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
+                        n.toLowerCase().includes(value) && 
+                        value.length > 1 && 
+                        n !== 'כל העיר'
+                    );
+                }
+                
+                console.log('Matched neighborhoods:', matchedNeighborhoods);
+                
+                searchResults.innerHTML = '';
+                
+                // הצגת התוצאות
+                if (matchedNeighborhoods.length > 0) {
+                    matchedNeighborhoods.forEach(name => {
+                        const button = createNeighborhoodButton(name, neighborhoods[name]);
+                        searchResults.appendChild(button);
+                    });
+                    
+                    // הוספת "כל העיר" בסוף, אם יש תוצאות חיפוש
+                    if (neighborhoods['כל העיר']) {
+                        const allCityButton = createNeighborhoodButton('כל העיר', neighborhoods['כל העיר']);
+                        searchResults.appendChild(allCityButton);
+                    }
 
-        let matchedNeighborhoods = [];
-
-        // אם מחפשים "כל", נציג רק את "כל העיר"
-        if (value === 'כל') {
-            if (neighborhoods['כל העיר']) {
-                matchedNeighborhoods = ['כל העיר'];
-            }
-        } else {
-            // אחרת, נחפש בכל השכונות חוץ מ"כל העיר"
-            matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
-                n.toLowerCase().includes(value) && 
-                value.length > 1 && 
-                n !== 'כל העיר'
-            );
-        }
-
-        console.log('Matched neighborhoods:', matchedNeighborhoods);
-
-        searchResults.innerHTML = '';
-
-        // הצגת התוצאות
-        if (matchedNeighborhoods.length > 0) {
-            matchedNeighborhoods.forEach(name => {
-                const button = createNeighborhoodButton(name, neighborhoods[name]);
-                searchResults.appendChild(button);
+                    searchResults.style.display = 'block';
+                    searchResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    searchResults.style.display = 'none';
+                }
             });
-
-            // הוספת "כל העיר" בסוף, אם יש תוצאות חיפוש
-            if (neighborhoods['כל העיר']) {
-                const allCityButton = createNeighborhoodButton('כל העיר', neighborhoods['כל העיר']);
-                searchResults.appendChild(allCityButton);
-            }
-
-            searchResults.style.display = 'block';
-            searchResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-            searchResults.style.display = 'none';
         }
-    });
-}
 
         // טעינת הנתונים בעת טעינת הדף
         window.addEventListener('load', async () => {
