@@ -154,31 +154,45 @@
             }
         }
 
+        function createNeighborhoodButton(name, link) {
+            const button = document.createElement('a');
+            button.href = link;
+            button.target = '_blank';
+            button.className = 'btn whatsapp-btn neighborhood-btn';
+            button.textContent = name;
+            return button;
+        }
+
         function initSearch() {
             const search = document.getElementById('neighborhood-search');
             const searchResults = document.getElementById('search-results');
             
             search.addEventListener('input', function() {
                 const value = this.value.trim().toLowerCase();
-                console.log('Input value:', value); // הצגת הערך שהוקלד
+                console.log('Input value:', value);
 
                 const matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
-                    n.toLowerCase().includes(value) && value.length > 1
+                    n.toLowerCase().includes(value) && value.length > 1 && n !== 'כל העיר'
                 );
                 
-                console.log('Matched neighborhoods:', matchedNeighborhoods); // הצגת רשימת השכונות שנמצאו
+                console.log('Matched neighborhoods:', matchedNeighborhoods);
                 
                 searchResults.innerHTML = '';
-                if (matchedNeighborhoods.length > 0) {
+                
+                // Display matched neighborhoods
+                if (matchedNeighborhoods.length > 0 || value.length > 1) {
+                    // Add matched neighborhoods
                     matchedNeighborhoods.forEach(name => {
-                        const link = neighborhoods[name];
-                        const button = document.createElement('a');
-                        button.href = link;
-                        button.target = '_blank';
-                        button.className = 'btn whatsapp-btn neighborhood-btn';
-                        button.textContent = name;
+                        const button = createNeighborhoodButton(name, neighborhoods[name]);
                         searchResults.appendChild(button);
                     });
+
+                    // Always add "כל העיר" as the last option if it exists in neighborhoods
+                    if (neighborhoods['כל העיר']) {
+                        const allCityButton = createNeighborhoodButton('כל העיר', neighborhoods['כל העיר']);
+                        searchResults.appendChild(allCityButton);
+                    }
+
                     searchResults.style.display = 'block';
                     searchResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
