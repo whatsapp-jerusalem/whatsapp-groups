@@ -171,28 +171,38 @@
                 const value = this.value.trim().toLowerCase();
                 console.log('Input value:', value);
 
-                const matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
-                    n.toLowerCase().includes(value) && value.length > 1 && n !== 'כל העיר'
-                );
+                let matchedNeighborhoods = [];
+                
+                // אם מחפשים "כל", נציג רק את "כל העיר"
+                if (value === 'כל') {
+                    if (neighborhoods['כל העיר']) {
+                        matchedNeighborhoods = ['כל העיר'];
+                    }
+                } else {
+                    // אחרת, נחפש בכל השכונות חוץ מ"כל העיר"
+                    matchedNeighborhoods = Object.keys(neighborhoods).filter(n => 
+                        n.toLowerCase().includes(value) && 
+                        value.length > 1 && 
+                        n !== 'כל העיר'
+                    );
+                    
+                    // נוסיף את "כל העיר" בסוף אם יש תוצאות חיפוש
+                    if (matchedNeighborhoods.length > 0 && neighborhoods['כל העיר']) {
+                        matchedNeighborhoods.push('כל העיר');
+                    }
+                }
                 
                 console.log('Matched neighborhoods:', matchedNeighborhoods);
                 
                 searchResults.innerHTML = '';
                 
-                // Display matched neighborhoods
-                if (matchedNeighborhoods.length > 0 || value.length > 1) {
-                    // Add matched neighborhoods
+                // הצגת התוצאות
+                if (matchedNeighborhoods.length > 0) {
                     matchedNeighborhoods.forEach(name => {
                         const button = createNeighborhoodButton(name, neighborhoods[name]);
                         searchResults.appendChild(button);
                     });
-
-                    // Always add "כל העיר" as the last option if it exists in neighborhoods
-                    if (neighborhoods['כל העיר']) {
-                        const allCityButton = createNeighborhoodButton('כל העיר', neighborhoods['כל העיר']);
-                        searchResults.appendChild(allCityButton);
-                    }
-
+                    
                     searchResults.style.display = 'block';
                     searchResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
